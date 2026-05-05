@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms of Service — ImmiHub</title>
+<link rel="icon" href="assets/app-icon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800,900&display=swap">
+<link rel="stylesheet" href="site-shell.css">
+<style>
+  .legal-section { padding: 48px var(--page-padding-x) 100px; background: var(--bg-white); }
+  .legal-inner { max-width: 700px; margin: 0 auto; }
+  .legal-title-block { padding: 100px var(--page-padding-x) 48px; background: var(--bg-white); }
+  .legal-title-block h1 { font-size: clamp(32px,5vw,44px); font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+  .legal-meta { font-size: 14px; color: var(--text-muted); }
+  .legal-section h2 { font-family: 'Source Sans 3', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-dark); margin: 0 0 10px; }
+  .legal-section .legal-block { margin-bottom: 32px; }
+  .legal-section .legal-block p { font-size: 15px; color: var(--text-body); line-height: 1.8; margin: 0; }
+  .legal-footer { font-size: 13px; color: var(--text-muted); margin-top: 48px; border-top: 1px solid var(--border); padding-top: 24px; }
+</style>
+</head>
+<body class="has-fixed-nav">
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-shell">
+    <a href="ImmiHub.html" class="nav-logo" aria-label="ImmiHub home">
+      <img src="assets/logo-immihub.png" alt="ImmiHub" />
+    </a>
+    <div class="nav-center">
+      <div class="nav-links">
+        <a href="ImmiHub.html">Home</a>
+        <a href="ImmiHub.html#features">Features</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+        <a href="faqs.html">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-cta-wrap">
+      <button class="btn-primary" type="button" data-waitlist-open>Get Early Access</button>
+    </div>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile-drawer" id="mobileDrawer">
+    <a href="ImmiHub.html">Home</a>
+    <a href="ImmiHub.html#features">Features</a>
+    <a href="resources.html">Resources</a>
+    <a href="about.html">About</a>
+    <a href="faqs.html">FAQs</a>
+    <button class="btn-primary" style="margin-top:12px;" type="button" data-waitlist-open>Get Early Access</button>
+  </div>
+</nav>
+<section class="legal-title-block"><div class="legal-inner"><h1>Terms of Service</h1><p class="legal-meta">Last updated: March 2026</p></div></section>
+<section class="legal-section"><div class="legal-inner">
+<div class="legal-block"><h2>1. Acceptance of Terms</h2><p>By downloading, accessing, or using ImmiHub, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our service. These terms apply to all users of the ImmiHub mobile application and website.</p></div>
+<div class="legal-block"><h2>2. Description of Service</h2><p>ImmiHub is a mobile application that provides: secure document storage for immigration documents; OCR-based date extraction from uploaded documents (powered by AWS Textract); automated expiry reminders via push notifications (Firebase Cloud Messaging) and email; and a personalized dashboard for tracking immigration deadlines. ImmiHub does NOT provide legal, immigration, or tax advice of any kind.</p></div>
+<div class="legal-block"><h2>3. User Accounts</h2><p>You must register with a valid phone number and verify via one-time passcode (OTP) to create an account. You are responsible for maintaining the confidentiality and security of your account. You must provide accurate, current information during registration. One account per person is permitted. You agree to notify us immediately at support@getimmihub.com if you suspect unauthorized access to your account.</p></div>
+<div class="legal-block"><h2>4. User Content</h2><p>Documents and information you upload to ImmiHub remain your property at all times. By uploading content, you grant ImmiHub a limited, non-exclusive license solely to store, process (including OCR extraction), and display your documents within the app for the purpose of providing the service. You may delete your documents and account at any time. You are solely responsible for the accuracy of information you provide, including confirming extracted expiry dates before reminders are activated.</p></div>
+<div class="legal-block"><h2>5. Acceptable Use</h2><p>You agree not to: upload illegal, harmful, or fraudulent content; share your account credentials with others; attempt to reverse-engineer, decompile, or exploit the service; use ImmiHub for any purpose other than personal immigration document management; upload documents belonging to other individuals without their explicit consent; or use the service in any manner that violates applicable local, state, national, or international law.</p></div>
+<div class="legal-block"><h2>6. Data Handling</h2><p>ImmiHub stores your documents in AWS S3 and your profile and immigration data in AWS RDS (PostgreSQL), both hosted in the United States with encryption at rest and TLS encryption in transit. OCR processing is performed by AWS Textract; raw OCR output is not retained beyond the extraction step. Push notifications are delivered via Firebase Cloud Messaging. For full details on how your data is collected, used, and protected, please review our Privacy Policy at www.getimmihub.com/privacy-policy.</p></div>
+<div class="legal-block"><h2>7. Disclaimers</h2><p>ImmiHub is NOT affiliated with USCIS, DHS, the Department of State, or any government agency. ImmiHub does NOT provide legal, immigration, or tax advice. Nothing in this app constitutes legal counsel or creates an attorney-client relationship. Expiry reminders are based solely on dates you review and confirm — ImmiHub is not responsible for incorrect or missed dates. ImmiHub is a document management tool and is not a substitute for professional immigration counsel. Users are solely responsible for verifying their own document expiry dates and compliance with applicable immigration requirements.</p></div>
+<div class="legal-block"><h2>8. Limitation of Liability</h2><p>ImmiHub is provided 'as is' and 'as available' without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, or non-infringement. To the maximum extent permitted by law, ImmiHub and its team shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to missed deadlines, incorrect OCR readings, visa lapses, or any immigration consequences arising from use or inability to use the service. Our total aggregate liability to you for any claims arising from these terms or the service is limited to the amount you paid for the service in the twelve months preceding the claim (which is $0 for the free beta tier).</p></div>
+<div class="legal-block"><h2>9. Termination</h2><p>You may delete your account and all associated data at any time from within the app or by contacting support@getimmihub.com. ImmiHub reserves the right to suspend or terminate accounts that violate these Terms of Service, with or without notice. Upon termination, your data will be deleted in accordance with our Privacy Policy.</p></div>
+<div class="legal-block"><h2>10. Changes to Terms</h2><p>We may update these Terms of Service from time to time. Material changes will be communicated via email or in-app notification at least 7 days before taking effect. Continued use of ImmiHub after changes constitutes your acceptance of the revised terms. The current version will always be available at www.getimmihub.com/terms.</p></div>
+<div class="legal-block"><h2>11. Governing Law</h2><p>These Terms of Service are governed by and construed in accordance with the laws of the State of Texas, United States of America, without regard to its conflict of law provisions. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in Texas.</p></div>
+<div class="legal-block"><h2>12. Contact</h2><p>For questions about these Terms of Service: <a style="color:var(--brand-primary);" href="mailto:legal@getimmihub.com">legal@getimmihub.com</a>. For general support: <a style="color:var(--brand-primary);" href="mailto:support@getimmihub.com">support@getimmihub.com</a>. Website: www.getimmihub.com.</p></div>
+<p class="legal-footer">© 2026 ImmiHub. All rights reserved.</p>
+</div></section>
+
+<footer class="site-footer">
+<!-- ImmiHub OS family cross-nav -->
+<div class="immi-os-family" style="border-bottom:1px solid #DFE4EA;padding:24px 0 28px;margin-bottom:28px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#8896A6;">Part of the</span>
+      <a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#1A2332;font-weight:600;font-size:13px;">
+        ImmiHub <span style="display:inline-flex;align-items:center;justify-content:center;height:16px;padding:0 6px;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#2B7AB8;background:#E8F2FA;border:1px solid rgba(79,158,214,0.25);border-radius:4px;">OS</span> family
+      </a>
+    </div>
+    <a href="../../index.html" style="font-size:12px;color:#2B7AB8;text-decoration:none;font-weight:500;">Visit ImmiHub OS →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+    <a href="../../apps/immigrant/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#4F9ED6;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">Consumer</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Immigrants</span></span>
+    </a>
+    <a href="../../apps/employer/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#7A6BE8;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">HR &amp; compliance</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Employers</span></span>
+    </a>
+    <a href="../../apps/dso/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#E8843C;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">DSO portal</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Institutions</span></span>
+    </a>
+    <a href="../../apps/attorney/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#2B7AB8;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">Case mgmt</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Attorneys</span></span>
+    </a>
+  </div>
+</div>
+<style>@media(max-width:760px){.immi-os-family>div:last-child{grid-template-columns:repeat(2,1fr)!important;}}</style>
+
+  <div class="footer-shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="ImmiHub.html"><img src="assets/logo-immihub.png" alt="ImmiHub" /></a>
+        <p class="footer-brand-blurb">A calmer way to manage your status. The secure document vault built for H-1B holders and their families.</p>
+        <p class="footer-location">Plano, Texas - United States</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Product</h4>
+        <nav class="footer-links">
+          <a href="ImmiHub.html#how-it-works">How it works</a>
+          <a href="ImmiHub.html#features">Features</a>
+          <a href="ImmiHub.html#roadmap">Roadmap</a>
+          <a href="ImmiHub.html#secured">Security</a>
+          <a href="ImmiHub.html#cta">Get the app</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Audiences</h4>
+        <nav class="footer-links">
+          <a href="ImmiHub.html#features">For H-1B holders</a>
+          <a href="ImmiHub.html#features">For employers</a>
+          <a href="ImmiHub.html#features">For universities</a>
+          <a href="ImmiHub.html#features">For attorneys</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <nav class="footer-links">
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+          <a href="careers.html">Careers</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Legal</h4>
+        <nav class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </nav>
+        <a href="mailto:support@getimmihub.com" class="footer-email">support@getimmihub.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="yr">2026</span> ImmiHub, Inc. - Not affiliated with USCIS or any government agency.</p>
+      <p>Made for people navigating US immigration</p>
+    </div>
+  </div>
+</footer>
+<div class="modal-backdrop" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="wlt">
+  <div class="modal-box">
+    <button class="modal-close" data-waitlist-close="force" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 id="wlt" class="modal-h">Join the waitlist</h2>
+    <p class="modal-p">Tell us a bit about you — we'll use your email as your signup reference.</p>
+    <form>
+      <div class="modal-row">
+        <label class="modal-label" for="wl-email">Email address <span style="color:var(--danger);">*</span></label>
+        <input type="email" id="wl-email" class="modal-input" required placeholder="Enter your email" />
+      </div>
+      <div class="modal-row">
+        <label class="modal-label" for="wl-name">Full name <span style="color:var(--danger);">*</span></label>
+        <input type="text" id="wl-name" class="modal-input" required placeholder="First name and Last name" />
+      </div>
+      <div class="modal-row">
+        <label class="modal-label" for="wl-visa">Visa type <span style="color:var(--danger);">*</span></label>
+        <select id="wl-visa" class="modal-select" required>
+          <option value="" disabled selected>Select visa type</option>
+          <option>H-1B</option><option>H-4</option><option>F-1 / OPT</option>
+          <option>L-1</option><option>O-1</option><option>Green Card</option><option>Other</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" data-waitlist-close="force">Cancel</button>
+        <button type="submit" class="btn-submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="waitlistToast">
+  <span class="toast-check">✓</span>
+  You're on the list! We'll notify you.
+</div>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="site-shell.js"></script>
+
+
+</body>
+</html>

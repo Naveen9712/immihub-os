@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resources — ImmiHub</title>
+<link rel="icon" href="assets/app-icon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800,900&display=swap">
+<link rel="stylesheet" href="site-shell.css">
+<style>
+  .res-hero {
+    padding: 100px var(--page-padding-x) 60px;
+    background: var(--brand-primary-pale);
+  }
+  .res-hero-inner { max-width: var(--page-max-width); margin: 0 auto; }
+  .res-eyebrow {
+    font-size: 13px; font-weight: 700; color: var(--brand-primary);
+    text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
+  }
+  .res-h1 {
+    font-size: clamp(32px, 5vw, 48px); font-weight: 900;
+    color: var(--text-dark); line-height: 1.15; margin-bottom: 18px;
+    max-width: 640px;
+  }
+  .res-sub {
+    font-size: 17px; color: var(--text-body); line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .res-section {
+    padding: 80px var(--page-padding-x);
+  }
+  .res-section.alt { background: var(--bg-alt); }
+  .res-section.white { background: var(--bg-white); }
+  .res-section-inner { max-width: var(--page-max-width); margin: 0 auto; }
+  .res-section-h {
+    font-size: clamp(24px, 3.5vw, 32px); font-weight: 800;
+    color: var(--text-dark); margin-bottom: 8px;
+  }
+  .res-section-sub {
+    font-size: 16px; color: var(--text-muted);
+    margin-bottom: 36px; max-width: 560px;
+  }
+
+  /* Doc cards */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .doc-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 26px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .doc-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-primary-light);
+    box-shadow: 0 12px 36px rgba(20,40,80,0.08);
+  }
+  .doc-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--brand-primary-pale);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .doc-icon svg { width: 22px; height: 22px; color: var(--brand-primary); }
+  .doc-card h3 {
+    font-size: 17px; font-weight: 800; color: var(--text-dark);
+    margin-bottom: 6px; line-height: 1.3;
+  }
+  .doc-card p {
+    font-size: 14px; color: var(--text-body);
+    line-height: 1.6; margin: 0;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: ""; position: absolute;
+    left: 14px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--brand-primary-light);
+  }
+  .timeline-item {
+    position: relative; padding-bottom: 32px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -33px; top: 4px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--brand-primary);
+  }
+  .timeline-item h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px; font-weight: 700; color: var(--brand-primary);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin: 0 0 6px;
+  }
+  .timeline-item h3 {
+    font-size: 18px; font-weight: 800; color: var(--text-dark);
+    margin: 0 0 6px; line-height: 1.3;
+  }
+  .timeline-item p {
+    font-size: 15px; color: var(--text-body);
+    line-height: 1.7; margin: 0; max-width: 600px;
+  }
+  .res-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 800px) {
+    .res-two-col { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* Disclaimer card */
+  .disclaimer {
+    background: var(--warning-light);
+    border-left: 4px solid var(--warning);
+    padding: 24px 28px;
+    border-radius: 14px;
+  }
+  .disclaimer h4 {
+    font-size: 15px; font-weight: 800;
+    color: var(--text-dark); margin: 0 0 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .disclaimer p {
+    font-size: 14px; color: var(--text-body);
+    line-height: 1.7; margin: 0;
+  }
+
+  /* Link rows */
+  .link-list {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none; color: inherit;
+    transition: background 0.15s;
+  }
+  .link-row:last-child { border-bottom: none; }
+  .link-row:hover { background: var(--bg-alt); }
+  .link-row .label {
+    flex: 1;
+  }
+  .link-row .label-title {
+    font-weight: 700; font-size: 15px;
+    color: var(--text-dark);
+  }
+  .link-row .label-meta {
+    font-size: 13px; color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .link-row .arrow {
+    color: var(--brand-primary);
+    font-size: 20px;
+  }
+</style>
+</head>
+<body class="has-fixed-nav">
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-shell">
+    <a href="ImmiHub.html" class="nav-logo" aria-label="ImmiHub home">
+      <img src="assets/logo-immihub.png" alt="ImmiHub" />
+    </a>
+    <div class="nav-center">
+      <div class="nav-links">
+        <a href="ImmiHub.html">Home</a>
+        <a href="ImmiHub.html#features">Features</a>
+        <a href="resources.html" class="active">Resources</a>
+        <a href="about.html">About</a>
+        <a href="faqs.html">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-cta-wrap">
+      <button class="btn-primary" type="button" data-waitlist-open>Get Early Access</button>
+    </div>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile-drawer" id="mobileDrawer">
+    <a href="ImmiHub.html">Home</a>
+    <a href="ImmiHub.html#features">Features</a>
+    <a href="resources.html">Resources</a>
+    <a href="about.html">About</a>
+    <a href="faqs.html">FAQs</a>
+    <button class="btn-primary" style="margin-top:12px;" type="button" data-waitlist-open>Get Early Access</button>
+  </div>
+</nav>
+
+<section class="res-hero">
+  <div class="res-hero-inner">
+    <p class="res-eyebrow">Resources</p>
+    <h1 class="res-h1">Plain-Language Guides for the H-1B Journey</h1>
+    <p class="res-sub">Reference material to help you understand the documents, dates, and decisions that shape your status. Educational only — never a substitute for an immigration attorney.</p>
+  </div>
+</section>
+
+<!-- Documents you should know -->
+<section class="res-section white">
+  <div class="res-section-inner">
+    <h2 class="res-section-h">Documents Every H-1B Holder Should Know</h2>
+    <p class="res-section-sub">Five documents define your status in the U.S. — keep them current, organized, and easy to find.</p>
+
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>Passport</h3>
+        <p>Government-issued travel document. Most U.S. visa stamps require your passport to remain valid for at least 6 months beyond your stay.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v4"/></svg></div>
+        <h3>I-797 Approval Notice</h3>
+        <p>USCIS notice confirming your H-1B petition was approved. Defines your authorized employment start and end dates.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></div>
+        <h3>I-94 Travel Record</h3>
+        <p>Proof of your lawful entry and the date by which you must depart or extend status. Issued electronically by CBP.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21v-1a7 7 0 0 1 14 0v1"/></svg></div>
+        <h3>U.S. Visa Stamp</h3>
+        <p>The visa foil placed in your passport at a U.S. consulate. Required for re-entry into the U.S. after international travel.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M6 14h6"/></svg></div>
+        <h3>EAD Card</h3>
+        <p>Employment Authorization Document. Issued in specific scenarios — H-4 EAD, OPT, GC-pending — and tied to a strict expiry date.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="res-section alt">
+  <div class="res-section-inner">
+    <div class="res-two-col">
+      <div>
+        <h2 class="res-section-h">A Year in the Life of Your Status</h2>
+        <p class="res-section-sub">A typical compliance year for an H-1B holder. Use it as a mental model — your specific timeline depends on your case.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>180+ days out</h4>
+          <h3>Long-range planning</h3>
+          <p>Confirm passport validity, scan all documents into your vault, and map upcoming deadlines for the year.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>90 days out</h4>
+          <h3>H-1B extension window opens</h3>
+          <p>USCIS accepts H-1B extension petitions up to 6 months before your I-797 expires — earlier is calmer.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>60 days out</h4>
+          <h3>Travel &amp; visa stamping</h3>
+          <p>If you'll need a fresh visa stamp, line up consulate appointments and confirm passport pages.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>30 days out</h4>
+          <h3>Document refresh</h3>
+          <p>Re-check I-94 against the latest entry, confirm employer records, and tidy your vault for any pending file.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>7 days out</h4>
+          <h3>Final compliance check</h3>
+          <p>Final reminder window. By now, every dependent document should be filed, scanned, and confirmed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Glossary / Useful links -->
+<section class="res-section white">
+  <div class="res-section-inner">
+    <div class="res-two-col">
+      <div>
+        <h2 class="res-section-h">Useful External Links</h2>
+        <p class="res-section-sub">Authoritative government resources for U.S. immigration. Always check official sources for current rules and processing times.</p>
+        <div class="link-list">
+          <a class="link-row" href="https://www.uscis.gov/" target="_blank" rel="noopener">
+            <div class="label">
+              <div class="label-title">USCIS</div>
+              <div class="label-meta">U.S. Citizenship and Immigration Services</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a class="link-row" href="https://i94.cbp.dhs.gov/" target="_blank" rel="noopener">
+            <div class="label">
+              <div class="label-title">I-94 Lookup</div>
+              <div class="label-meta">CBP I-94 retrieval &amp; travel history</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a class="link-row" href="https://travel.state.gov/" target="_blank" rel="noopener">
+            <div class="label">
+              <div class="label-title">U.S. Department of State — Visas</div>
+              <div class="label-meta">Visa appointments, bulletins, processing</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a class="link-row" href="https://egov.uscis.gov/processing-times/" target="_blank" rel="noopener">
+            <div class="label">
+              <div class="label-title">USCIS Processing Times</div>
+              <div class="label-meta">Latest case processing estimates</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a class="link-row" href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html" target="_blank" rel="noopener">
+            <div class="label">
+              <div class="label-title">Visa Bulletin</div>
+              <div class="label-meta">Monthly priority date movement</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="res-section-h">Glossary of Common Terms</h2>
+        <p class="res-section-sub">Plain-English definitions for the acronyms that show up most often.</p>
+        <div class="doc-grid" style="grid-template-columns: 1fr;">
+          <div class="doc-card"><h3>I-797</h3><p>USCIS notice of action — most often confirming approval of your H-1B petition and listing your authorized validity period.</p></div>
+          <div class="doc-card"><h3>I-94</h3><p>Arrival/departure record issued by CBP, showing your authorized period of stay in the U.S.</p></div>
+          <div class="doc-card"><h3>EAD</h3><p>Employment Authorization Document — a card permitting work in specific status categories.</p></div>
+          <div class="doc-card"><h3>USCIS</h3><p>U.S. Citizenship and Immigration Services — the agency that adjudicates immigration benefits.</p></div>
+          <div class="doc-card"><h3>CBP</h3><p>U.S. Customs and Border Protection — issues your I-94 at the port of entry.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="res-section alt">
+  <div class="res-section-inner">
+    <div class="disclaimer">
+      <h4>📌 Important Note</h4>
+      <p>The content on this page is educational and is not legal advice. Immigration rules change frequently and individual circumstances vary. For decisions that affect your status, please consult a licensed U.S. immigration attorney. ImmiHub is not affiliated with USCIS or any U.S. government agency.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+<!-- ImmiHub OS family cross-nav -->
+<div class="immi-os-family" style="border-bottom:1px solid #DFE4EA;padding:24px 0 28px;margin-bottom:28px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#8896A6;">Part of the</span>
+      <a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#1A2332;font-weight:600;font-size:13px;">
+        ImmiHub <span style="display:inline-flex;align-items:center;justify-content:center;height:16px;padding:0 6px;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#2B7AB8;background:#E8F2FA;border:1px solid rgba(79,158,214,0.25);border-radius:4px;">OS</span> family
+      </a>
+    </div>
+    <a href="../../index.html" style="font-size:12px;color:#2B7AB8;text-decoration:none;font-weight:500;">Visit ImmiHub OS →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+    <a href="../../apps/immigrant/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#4F9ED6;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">Consumer</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Immigrants</span></span>
+    </a>
+    <a href="../../apps/employer/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#7A6BE8;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">HR &amp; compliance</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Employers</span></span>
+    </a>
+    <a href="../../apps/dso/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#E8843C;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">DSO portal</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Institutions</span></span>
+    </a>
+    <a href="../../apps/attorney/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#2B7AB8;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">Case mgmt</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Attorneys</span></span>
+    </a>
+  </div>
+</div>
+<style>@media(max-width:760px){.immi-os-family>div:last-child{grid-template-columns:repeat(2,1fr)!important;}}</style>
+
+  <div class="footer-shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="ImmiHub.html"><img src="assets/logo-immihub.png" alt="ImmiHub" /></a>
+        <p class="footer-brand-blurb">A calmer way to manage your status. The secure document vault built for H-1B holders and their families.</p>
+        <p class="footer-location">Plano, Texas - United States</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Product</h4>
+        <nav class="footer-links">
+          <a href="ImmiHub.html#how-it-works">How it works</a>
+          <a href="ImmiHub.html#features">Features</a>
+          <a href="ImmiHub.html#roadmap">Roadmap</a>
+          <a href="ImmiHub.html#secured">Security</a>
+          <a href="ImmiHub.html#cta">Get the app</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Audiences</h4>
+        <nav class="footer-links">
+          <a href="ImmiHub.html#features">For H-1B holders</a>
+          <a href="ImmiHub.html#features">For employers</a>
+          <a href="ImmiHub.html#features">For universities</a>
+          <a href="ImmiHub.html#features">For attorneys</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <nav class="footer-links">
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+          <a href="careers.html">Careers</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Legal</h4>
+        <nav class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </nav>
+        <a href="mailto:support@getimmihub.com" class="footer-email">support@getimmihub.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="yr">2026</span> ImmiHub, Inc. - Not affiliated with USCIS or any government agency.</p>
+      <p>Made for people navigating US immigration</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="wlt">
+  <div class="modal-box">
+    <button class="modal-close" data-waitlist-close="force" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 id="wlt" class="modal-h">Join the waitlist</h2>
+    <p class="modal-p">Tell us a bit about you — we'll use your email as your signup reference.</p>
+    <form>
+      <div class="modal-row"><label class="modal-label" for="wl-email">Email address <span style="color:var(--danger);">*</span></label><input type="email" id="wl-email" class="modal-input" required placeholder="Enter your email" /></div>
+      <div class="modal-row"><label class="modal-label" for="wl-name">Full name <span style="color:var(--danger);">*</span></label><input type="text" id="wl-name" class="modal-input" required placeholder="First name and Last name" /></div>
+      <div class="modal-row"><label class="modal-label" for="wl-visa">Visa type <span style="color:var(--danger);">*</span></label><select id="wl-visa" class="modal-select" required><option value="" disabled selected>Select visa type</option><option>H-1B</option><option>H-4</option><option>F-1 / OPT</option><option>L-1</option><option>O-1</option><option>Green Card</option><option>Other</option></select></div>
+      <div class="modal-actions"><button type="button" class="btn-cancel" data-waitlist-close="force">Cancel</button><button type="submit" class="btn-submit">Submit</button></div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="waitlistToast"><span class="toast-check">✓</span>You're on the list! We'll notify you.</div>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="site-shell.js"></script>
+
+
+</body>
+</html>

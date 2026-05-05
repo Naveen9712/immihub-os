@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQs — ImmiHub</title>
+<link rel="icon" href="assets/app-icon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800,900&display=swap">
+<link rel="stylesheet" href="site-shell.css">
+<style>
+  .faq-hero {
+    padding: 100px var(--page-padding-x) 60px;
+    background: var(--brand-primary-pale);
+    text-align: center;
+  }
+  .faq-hero-inner { max-width: 760px; margin: 0 auto; }
+  .faq-eyebrow {
+    font-size: 13px; font-weight: 700; color: var(--brand-primary);
+    text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
+  }
+  .faq-h1 {
+    font-size: clamp(32px, 5vw, 48px); font-weight: 900;
+    color: var(--text-dark); line-height: 1.15; margin-bottom: 18px;
+  }
+  .faq-sub {
+    font-size: 17px; color: var(--text-body); line-height: 1.7;
+    max-width: 580px; margin: 0 auto;
+  }
+
+  .faq-search-wrap {
+    background: var(--bg-white);
+    padding: 0 var(--page-padding-x);
+  }
+  .faq-search-inner {
+    max-width: 720px; margin: 0 auto;
+    transform: translateY(-32px);
+  }
+  .faq-search {
+    width: 100%;
+    padding: 18px 22px 18px 56px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%238896A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') 18px center no-repeat;
+    font-size: 16px; color: var(--text-dark);
+    font-family: inherit;
+    box-shadow: 0 8px 30px rgba(20,40,80,0.08);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .faq-search:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 8px 30px rgba(79,158,214,0.18);
+  }
+  .faq-search::placeholder { color: var(--text-muted); }
+
+  .faq-body {
+    padding: 20px var(--page-padding-x) 100px;
+    background: var(--bg-white);
+  }
+  .faq-layout {
+    max-width: var(--page-max-width); margin: 0 auto;
+    display: grid; grid-template-columns: 240px 1fr; gap: 56px;
+  }
+  @media (max-width: 900px) {
+    .faq-layout { grid-template-columns: 1fr; gap: 24px; }
+    .faq-side { position: static; }
+  }
+
+  .faq-side {
+    position: sticky; top: 100px;
+    align-self: start;
+  }
+  .faq-side h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 2px; margin: 0 0 14px;
+  }
+  .faq-cat-btn {
+    display: block; width: 100%; text-align: left;
+    background: none; border: none; cursor: pointer;
+    padding: 10px 14px; border-radius: 10px;
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    color: var(--text-body); margin-bottom: 4px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .faq-cat-btn:hover { background: var(--bg-alt); color: var(--text-dark); }
+  .faq-cat-btn.active {
+    background: var(--brand-primary-pale); color: var(--brand-primary);
+  }
+
+  .faq-cat { margin-bottom: 56px; scroll-margin-top: 100px; }
+  .faq-cat-h {
+    font-size: 24px; font-weight: 800; color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .faq-cat-desc {
+    font-size: 15px; color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  details.faq-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  details.faq-item[open] {
+    border-color: var(--brand-primary-light);
+    box-shadow: 0 4px 24px rgba(79,158,214,0.08);
+  }
+  details.faq-item summary {
+    list-style: none;
+    padding: 18px 22px; cursor: pointer;
+    font-weight: 700; font-size: 16px; color: var(--text-dark);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--bg-alt); color: var(--brand-primary);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+  details.faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+    background: var(--brand-primary); color: #fff;
+  }
+  .faq-answer {
+    padding: 0 22px 20px;
+    font-size: 15px; color: var(--text-body); line-height: 1.75;
+  }
+  .faq-answer p { margin: 0 0 10px; }
+  .faq-answer p:last-child { margin-bottom: 0; }
+  .faq-answer strong { color: var(--text-dark); }
+  .faq-answer a { color: var(--brand-primary); font-weight: 600; }
+
+  .no-results {
+    text-align: center; padding: 40px 20px;
+    color: var(--text-muted); font-size: 15px;
+    display: none;
+  }
+  .no-results.show { display: block; }
+
+  .faq-cta-section {
+    background: var(--brand-primary-pale);
+    padding: 80px var(--page-padding-x);
+    text-align: center;
+  }
+  .faq-cta-inner { max-width: 600px; margin: 0 auto; }
+  .faq-cta-h {
+    font-size: clamp(24px, 3.5vw, 32px); font-weight: 800;
+    color: var(--text-dark); margin-bottom: 12px;
+  }
+  .faq-cta-p {
+    font-size: 16px; color: var(--text-body); line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .faq-cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--brand-primary); color: #fff;
+    border: none; border-radius: 12px;
+    font-family: inherit; font-size: 15px; font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(79,158,214,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .faq-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(79,158,214,0.35);
+  }
+</style>
+</head>
+<body class="has-fixed-nav">
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-shell">
+    <a href="ImmiHub.html" class="nav-logo" aria-label="ImmiHub home">
+      <img src="assets/logo-immihub.png" alt="ImmiHub" />
+    </a>
+    <div class="nav-center">
+      <div class="nav-links">
+        <a href="ImmiHub.html">Home</a>
+        <a href="ImmiHub.html#features">Features</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+        <a href="faqs.html" class="active">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-cta-wrap">
+      <button class="btn-primary" type="button" data-waitlist-open>Get Early Access</button>
+    </div>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile-drawer" id="mobileDrawer">
+    <a href="ImmiHub.html">Home</a>
+    <a href="ImmiHub.html#features">Features</a>
+    <a href="resources.html">Resources</a>
+    <a href="about.html">About</a>
+    <a href="faqs.html">FAQs</a>
+    <button class="btn-primary" style="margin-top:12px;" type="button" data-waitlist-open>Get Early Access</button>
+  </div>
+</nav>
+
+<section class="faq-hero">
+  <div class="faq-hero-inner">
+    <p class="faq-eyebrow">Help Center</p>
+    <h1 class="faq-h1">Frequently Asked Questions</h1>
+    <p class="faq-sub">Everything you need to know about ImmiHub — security, features, eligibility, and what's coming next.</p>
+  </div>
+</section>
+
+<div class="faq-search-wrap">
+  <div class="faq-search-inner">
+    <input id="faqSearch" type="text" class="faq-search" placeholder="Search questions..." aria-label="Search FAQs" />
+  </div>
+</div>
+
+<section class="faq-body">
+  <div class="faq-layout">
+    <aside class="faq-side">
+      <h4>Categories</h4>
+      <button class="faq-cat-btn active" data-target="cat-getting-started">Getting Started</button>
+      <button class="faq-cat-btn" data-target="cat-security">Security &amp; Privacy</button>
+      <button class="faq-cat-btn" data-target="cat-features">Features &amp; Use</button>
+      <button class="faq-cat-btn" data-target="cat-eligibility">Eligibility</button>
+      <button class="faq-cat-btn" data-target="cat-pricing">Pricing &amp; Access</button>
+      <button class="faq-cat-btn" data-target="cat-roadmap">Roadmap</button>
+    </aside>
+
+    <div class="faq-content">
+      <p id="noResults" class="no-results">No questions match your search. Try a different keyword.</p>
+
+      <div class="faq-cat" id="cat-getting-started">
+        <h2 class="faq-cat-h">Getting Started</h2>
+        <p class="faq-cat-desc">The basics of ImmiHub and how it works.</p>
+
+        <details class="faq-item"><summary><span>What is ImmiHub?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>ImmiHub is a secure mobile app that helps H-1B visa holders and their families manage critical immigration documents and never miss an expiry date. Upload your documents, we extract key dates with OCR, and you get smart reminders weeks and months before deadlines.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>How is ImmiHub different from a regular cloud storage app?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Generic cloud storage just holds your files. ImmiHub <strong>understands</strong> them. We automatically pull expiry dates from passports, I-797s, I-94s, EADs, and visa stamps, then build a personalized compliance timeline with proactive reminders. It's purpose-built for the U.S. immigration journey.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>How do I sign up?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>We're currently in private beta. Join the waitlist on this page and we'll send you a download link as soon as your invitation opens up.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-cat" id="cat-security">
+        <h2 class="faq-cat-h">Security &amp; Privacy</h2>
+        <p class="faq-cat-desc">How we protect your most sensitive documents.</p>
+
+        <details class="faq-item"><summary><span>How are my documents stored and protected?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Your documents are encrypted at rest in AWS S3 and your profile data lives in AWS RDS (PostgreSQL), both hosted in the United States. All traffic is encrypted in transit with TLS. Authentication is phone-number-based with one-time passcode verification.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>Will ImmiHub share my information?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>No. Your documents and personal data are never shared with third parties without your explicit consent. We're not affiliated with USCIS or any government agency, and we never will be.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>What happens during OCR processing?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>OCR extraction is performed by AWS Textract. We pull only the dates and document metadata we need to power reminders. Raw OCR output is not retained beyond the extraction step. You always confirm the extracted dates before reminders are activated.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>Can I delete my data?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Yes — anytime. You can delete individual documents, your full document set, or your entire account from inside the app. You can also email <a href="mailto:support@getimmihub.com">support@getimmihub.com</a>.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-cat" id="cat-features">
+        <h2 class="faq-cat-h">Features &amp; Use</h2>
+        <p class="faq-cat-desc">What ImmiHub can do for you today.</p>
+
+        <details class="faq-item"><summary><span>What documents can I upload?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Passports, I-797 Approval Notices, I-94 Travel Records, U.S. Visa Stamps, and EAD cards. We accept clear photos and PDF scans.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>How accurate is the date extraction?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Our OCR is highly accurate on clear scans, but you always review and confirm extracted dates before reminders go live. Think of it as a smart first draft you sign off on.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>How do reminders work?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>You'll get push notifications and email alerts at smart intervals — typically 90, 60, 30, 14, and 7 days before each expiry. Push delivery is handled by Firebase Cloud Messaging.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>Can I manage documents for my family?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Today, each user manages their own vault. Family vault sharing is on our near-term roadmap so spouses and dependents can stay coordinated in one place.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-cat" id="cat-eligibility">
+        <h2 class="faq-cat-h">Eligibility</h2>
+        <p class="faq-cat-desc">Who ImmiHub is built for today.</p>
+
+        <details class="faq-item"><summary><span>Is ImmiHub only for H-1B holders?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Our launch focus is H-1B visa holders and their H-4 dependents — that's where the deadline pressure is most acute. F-1/OPT, L-1, O-1, and Green Card pathways are next on the roadmap.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>Do I need to be in the U.S. to use ImmiHub?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>You can sign up from anywhere, but the app is purpose-built for navigating the U.S. immigration system.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-cat" id="cat-pricing">
+        <h2 class="faq-cat-h">Pricing &amp; Access</h2>
+        <p class="faq-cat-desc">What it costs and what's included.</p>
+
+        <details class="faq-item"><summary><span>Is ImmiHub free?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Yes — core features are free for individual immigrants and always will be. We believe protecting your status shouldn't depend on your ability to pay.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>Will there ever be paid plans?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>We may offer paid features for employers, universities, and immigration attorneys to help fund the platform — but the individual core experience stays free.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-cat" id="cat-roadmap">
+        <h2 class="faq-cat-h">Roadmap</h2>
+        <p class="faq-cat-desc">What's coming next.</p>
+
+        <details class="faq-item"><summary><span>What's coming next?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Family vault sharing, an AI-powered immigration assistant, multi-visa coverage (F-1/OPT, L-1, O-1, Green Card), attorney collaboration, and employer compliance dashboards.</p></div>
+        </details>
+        <details class="faq-item"><summary><span>How can I influence the roadmap?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Beta users get a direct line to the team. Email <a href="mailto:support@getimmihub.com">support@getimmihub.com</a> with feature requests, frustrations, or stories — we read every message.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-cta-section">
+  <div class="faq-cta-inner">
+    <h2 class="faq-cta-h">Still have questions?</h2>
+    <p class="faq-cta-p">We're a small team and we read every email. Reach out and we'll get back to you within a couple of business days.</p>
+    <a class="faq-cta-btn" href="mailto:support@getimmihub.com">Email support@getimmihub.com</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+<!-- ImmiHub OS family cross-nav -->
+<div class="immi-os-family" style="border-bottom:1px solid #DFE4EA;padding:24px 0 28px;margin-bottom:28px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#8896A6;">Part of the</span>
+      <a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#1A2332;font-weight:600;font-size:13px;">
+        ImmiHub <span style="display:inline-flex;align-items:center;justify-content:center;height:16px;padding:0 6px;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#2B7AB8;background:#E8F2FA;border:1px solid rgba(79,158,214,0.25);border-radius:4px;">OS</span> family
+      </a>
+    </div>
+    <a href="../../index.html" style="font-size:12px;color:#2B7AB8;text-decoration:none;font-weight:500;">Visit ImmiHub OS →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+    <a href="../../apps/immigrant/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#4F9ED6;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">Consumer</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Immigrants</span></span>
+    </a>
+    <a href="../../apps/employer/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#7A6BE8;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">HR &amp; compliance</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Employers</span></span>
+    </a>
+    <a href="../../apps/dso/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#E8843C;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">DSO portal</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Institutions</span></span>
+    </a>
+    <a href="../../apps/attorney/index.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#FAFBFD;border:1px solid #DFE4EA;border-radius:10px;text-decoration:none;color:#1A2332;transition:all 200ms;">
+      <span style="width:8px;height:8px;border-radius:999px;background:#2B7AB8;flex-shrink:0;"></span>
+      <span><span style="display:block;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8896A6;">Case mgmt</span><span style="display:block;font-size:13px;font-weight:600;margin-top:1px;">For Attorneys</span></span>
+    </a>
+  </div>
+</div>
+<style>@media(max-width:760px){.immi-os-family>div:last-child{grid-template-columns:repeat(2,1fr)!important;}}</style>
+
+  <div class="footer-shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="ImmiHub.html"><img src="assets/logo-immihub.png" alt="ImmiHub" /></a>
+        <p class="footer-brand-blurb">A calmer way to manage your status. The secure document vault built for H-1B holders and their families.</p>
+        <p class="footer-location">Plano, Texas - United States</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Product</h4>
+        <nav class="footer-links">
+          <a href="ImmiHub.html#how-it-works">How it works</a>
+          <a href="ImmiHub.html#features">Features</a>
+          <a href="ImmiHub.html#roadmap">Roadmap</a>
+          <a href="ImmiHub.html#secured">Security</a>
+          <a href="ImmiHub.html#cta">Get the app</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Audiences</h4>
+        <nav class="footer-links">
+          <a href="ImmiHub.html#features">For H-1B holders</a>
+          <a href="ImmiHub.html#features">For employers</a>
+          <a href="ImmiHub.html#features">For universities</a>
+          <a href="ImmiHub.html#features">For attorneys</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <nav class="footer-links">
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+          <a href="careers.html">Careers</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer-heading">Legal</h4>
+        <nav class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </nav>
+        <a href="mailto:support@getimmihub.com" class="footer-email">support@getimmihub.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="yr">2026</span> ImmiHub, Inc. - Not affiliated with USCIS or any government agency.</p>
+      <p>Made for people navigating US immigration</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="wlt">
+  <div class="modal-box">
+    <button class="modal-close" data-waitlist-close="force" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 id="wlt" class="modal-h">Join the waitlist</h2>
+    <p class="modal-p">Tell us a bit about you — we'll use your email as your signup reference.</p>
+    <form>
+      <div class="modal-row"><label class="modal-label" for="wl-email">Email address <span style="color:var(--danger);">*</span></label><input type="email" id="wl-email" class="modal-input" required placeholder="Enter your email" /></div>
+      <div class="modal-row"><label class="modal-label" for="wl-name">Full name <span style="color:var(--danger);">*</span></label><input type="text" id="wl-name" class="modal-input" required placeholder="First name and Last name" /></div>
+      <div class="modal-row"><label class="modal-label" for="wl-visa">Visa type <span style="color:var(--danger);">*</span></label><select id="wl-visa" class="modal-select" required><option value="" disabled selected>Select visa type</option><option>H-1B</option><option>H-4</option><option>F-1 / OPT</option><option>L-1</option><option>O-1</option><option>Green Card</option><option>Other</option></select></div>
+      <div class="modal-actions"><button type="button" class="btn-cancel" data-waitlist-close="force">Cancel</button><button type="submit" class="btn-submit">Submit</button></div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="waitlistToast"><span class="toast-check">✓</span>You're on the list! We'll notify you.</div>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="site-shell.js"></script>
+<script>
+  // Sidebar category jumping
+  document.querySelectorAll('.faq-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        const top = targetEl.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Search
+  const search = document.getElementById('faqSearch');
+  const noResults = document.getElementById('noResults');
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    let anyVisible = false;
+    document.querySelectorAll('.faq-cat').forEach(cat => {
+      let catHasMatch = false;
+      cat.querySelectorAll('details.faq-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        const match = !q || text.includes(q);
+        item.style.display = match ? '' : 'none';
+        if (match) { catHasMatch = true; anyVisible = true; }
+      });
+      cat.style.display = catHasMatch ? '' : 'none';
+    });
+    noResults.classList.toggle('show', !anyVisible);
+  });
+</script>
+
+
+</body>
+</html>

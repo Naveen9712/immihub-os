@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ImmiHub OS — The Immigrant OS</title>
+<link rel="icon" href="assets/app-icon-32.png" />
+<link rel="apple-touch-icon" href="assets/app-icon-180.png" />
+<link rel="stylesheet" href="assets/colors_and_type.css?v=3" />
+<style>
+  html, body { margin: 0; padding: 0; background: var(--bg-page); }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--fg-2);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; }
+  * { box-sizing: border-box; }
+  @keyframes im-fade-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes im-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
