@@ -1,0 +1,8 @@
+services:
+  - type: static_site
+    name: immihub-os
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    autoDeploy: true
